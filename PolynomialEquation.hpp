@@ -27,9 +27,11 @@ class PolynomialEquation
 		std::vector<double> const	&getReducedPolynomial(void) const;
 
 		void	reduceEquation(void);
-
-		PolynomialEquation const	&operator=(PolynomialEquation const &cpy);
 		
+		void	showRealSolutionValues(void) const;
+		
+		PolynomialEquation const	&operator=(PolynomialEquation const &cpy);	
+	
 	private :
 
 		int			_degree;

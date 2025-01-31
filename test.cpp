@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include "PolynomialEquation.hpp"
-
+#include <cmath>
 void	printDigit(int const &digit)
 {
 	switch (digit)
@@ -59,6 +59,29 @@ double	ft_abs(double const &value)
 		return (value);
 }
 
+double	ft_sqrt(double const &number)//newton-raphson, se renseigner
+{
+	    if (number < 0) {
+        std::cout << "Error: Cannot compute the square root of a negative number!" << std::endl;
+        return -1;  // Return an error value
+    }
+
+    if (number == 0) return 0;  // Special case for 0
+    
+    double guess = number / 2.0;  // Start with an initial guess
+    double epsilon = 1e-12;        // The precision level
+
+    while (true) {
+        double next_guess = 0.5 * (guess + number / guess);  // Newton's method formula
+        if (std::abs(next_guess - guess) < epsilon) {
+            break;  // Stop when the difference is within the acceptable range
+        }
+        guess = next_guess;  // Update the guess
+    }
+
+    return guess;
+}
+
 void	printVect(std::vector<double> const &value)
 {
 	int i = 0;
@@ -80,22 +103,21 @@ void	printPartialVect(std::vector<double> const &value)
 {
 }
 */
+
+//a + bx + cx**2
+
 int main(void)
 {
 	std::vector<double> prout;
-	prout.push_back(4.43);
-	prout.push_back(434.543);
-	prout.push_back(-424);
-	prout.push_back(-1);
-	prout.push_back(0);
-	prout.push_back(32.1);
-	prout.push_back(0);
+	prout.push_back(4.4424324);
+	prout.push_back(1);
 	std::vector<double> caca;
-	caca.push_back(5);
-	caca.push_back(7);
-	caca.push_back(1);
-	caca.push_back(-3);
-	caca.push_back(6.1);
+	caca.push_back(0);
 	PolynomialEquation here(prout, caca);
 	printVect(here.getReducedPolynomial());
+	here.solveInR();
+	std::cout << here.getSolutions()[0] << std::endl << here.getSolutions()[1] << std::endl;
+	here.showRealSolutionValues();
+	std::cout << sqrt(0.00000000000000000004) << std::endl;
+	std::cout << ft_sqrt(0.00000000000000000004) << std::endl;
 }
