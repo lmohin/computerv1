@@ -59,27 +59,25 @@ double	ft_abs(double const &value)
 		return (value);
 }
 
-double	ft_sqrt(double const &number)//newton-raphson, se renseigner
+
+// approximating square root function using Newton method
+double	ft_sqrt(double const &number)
 {
-	    if (number < 0) {
-        std::cout << "Error: Cannot compute the square root of a negative number!" << std::endl;
-        return -1;  // Return an error value
-    }
-
-    if (number == 0) return 0;  // Special case for 0
-    
-    double guess = number / 2.0;  // Start with an initial guess
-    double epsilon = 1e-12;        // The precision level
-
-    while (true) {
-        double next_guess = 0.5 * (guess + number / guess);  // Newton's method formula
-        if (std::abs(next_guess - guess) < epsilon) {
-            break;  // Stop when the difference is within the acceptable range
-        }
-        guess = next_guess;  // Update the guess
-    }
-
-    return guess;
+	if (number < 0)
+        	return -1;
+	if (number == 0)
+		return 0;
+    	
+	double value = number / 2.0;
+	double epsilon = 1e-10;
+	double nextValue = 0.5 * (value + number / nextValue);
+	
+	while (ft_abs(nextValue - value) > epsilon)
+	{
+		value = nextValue;
+		nextValue = 0.5 * (value + number / nextValue);
+	}
+	return nextValue;
 }
 
 void	printVect(std::vector<double> const &value)
@@ -109,15 +107,16 @@ void	printPartialVect(std::vector<double> const &value)
 int main(void)
 {
 	std::vector<double> prout;
-	prout.push_back(4.4424324);
-	prout.push_back(1);
+	prout.push_back(-12);
+	prout.push_back(29);
+	prout.push_back(2);
 	std::vector<double> caca;
-	caca.push_back(0);
+	caca.push_back(32);
 	PolynomialEquation here(prout, caca);
 	printVect(here.getReducedPolynomial());
 	here.solveInR();
 	std::cout << here.getSolutions()[0] << std::endl << here.getSolutions()[1] << std::endl;
 	here.showRealSolutionValues();
-	std::cout << sqrt(0.00000000000000000004) << std::endl;
-	std::cout << ft_sqrt(0.00000000000000000004) << std::endl;
+//	std::cout << sqrt(45) << std::endl;
+//	std::cout << ft_sqrt(2) << std::endl;
 }

@@ -129,7 +129,7 @@ void	PolynomialEquation::solveInR(void)
 			_solutions.push_back((-b) / (2 * a));
 	}
 	else if (_degree == 1)
-		_solutions.push_back(_reducedPolynomial[0] / _reducedPolynomial[1]);
+		_solutions.push_back(-_reducedPolynomial[0] / _reducedPolynomial[1]);
 }
 
 void	PolynomialEquation::showRealSolutionValues(void) const
@@ -149,7 +149,7 @@ void	PolynomialEquation::showRealSolutionValues(void) const
 			std::cout << -b << " / " << 2 * a << std::endl;
 	}
 	if (_degree == 1)
-		std::cout << _reducedPolynomial[0] << " / " << _reducedPolynomial[1] << std::endl;
+		std::cout << -_reducedPolynomial[0] << " / " << _reducedPolynomial[1] << std::endl;
 	if (_degree == 0)
 	{
 		if (_reducedPolynomial[0] == 0)
