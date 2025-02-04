@@ -17,15 +17,16 @@ PolynomialEquation::PolynomialEquation(PolynomialEquation const &cpy)
 	return ;
 }
 
-PolynomialEquation::PolynomialEquation(std::vector<double> const &left, std::vector<double> const &right)
+PolynomialEquation::PolynomialEquation(std::map<long int, double> const &left, std::map<long int, double> const &right)
 : _leftPolynomial(left), _rightPolynomial(right)
 {
+/*	REFAIRE AVEC MAP
 	reduceEquation();
 	_degree = _reducedPolynomial.size() - 1;
 	if (_degree == 0 && _reducedPolynomial[0] == 0)
 		_hasInfiniteSolutions = true;
 	else
-		_hasInfiniteSolutions = false;
+		_hasInfiniteSolutions = false;*/
 }
 
 
@@ -53,24 +54,24 @@ std::vector<double>  const	&PolynomialEquation::getSolutions(void) const
 	return (_solutions);
 }
 
-std::vector<double> const	&PolynomialEquation::getLeftPolynomial(void) const
+std::map<long int, double> const	&PolynomialEquation::getLeftPolynomial(void) const
 {
 	return (_leftPolynomial);
 }
 
-std::vector<double> const	&PolynomialEquation::getRightPolynomial(void) const
+std::map<long int, double> const	&PolynomialEquation::getRightPolynomial(void) const
 {
 	return (_rightPolynomial);
 }
 
-std::vector<double> const	&PolynomialEquation::getReducedPolynomial(void) const
+std::map<long int, double> const	&PolynomialEquation::getReducedPolynomial(void) const
 {
 	return (_reducedPolynomial);
 }
-
+/* A REFAIRE AVEC MAP !!!
 void	PolynomialEquation::reduceEquation(void)
 {
-	std::vector<double>	newReducedForm;
+	std::map<long int, double>	newReducedForm;
 
 	if (_leftPolynomial.size() < _rightPolynomial.size())
 	{
@@ -106,15 +107,15 @@ void	PolynomialEquation::reduceEquation(void)
 	if (it != newReducedForm.end() && it != newReducedForm.begin())
 		newReducedForm.erase(it + 1, newReducedForm.end());
 	_reducedPolynomial = newReducedForm;
-}
+}*/
 
 void	PolynomialEquation::solveInR(void)
 {
 	if (_degree == 2)
 	{
 		double a = _reducedPolynomial[2];
-		double b = _reducedPolynomial[1];
-		double c = _reducedPolynomial[0];
+		double b = _reducedPolynomial.count(1) ? _reducedPolynomial[1] : 0;
+		double c = _reducedPolynomial.count(0) ? _reducedPolynomial[0] : 0;
 		double delta = b * b - 4 * a * c;
 		if (delta > 0)
 		{
@@ -129,7 +130,11 @@ void	PolynomialEquation::solveInR(void)
 			_solutions.push_back((-b) / (2 * a));
 	}
 	else if (_degree == 1)
-		_solutions.push_back(-_reducedPolynomial[0] / _reducedPolynomial[1]);
+	{
+		double a = _reducedPolynomial[1];
+		double b = _reducedPolynomial.count(0) ? _reducedPolynomial[0] : 0;
+		_solutions.push_back(-b/a);
+	}
 }
 
 void	PolynomialEquation::showRealSolutionValues(void) const
@@ -137,8 +142,8 @@ void	PolynomialEquation::showRealSolutionValues(void) const
 	if (_degree == 2)
 	{
 		double a = _reducedPolynomial[2];
-		double b = _reducedPolynomial[1];
-		double c = _reducedPolynomial[0];
+		double b = _reducedPolynomial.count(1) ? _reducedPolynomial[1] : 0;
+		double c = _reducedPolynomial.count(0) ? _reducedPolynomial[0] : 0;
 		double delta = b * b - 4 * a * c;
 		if (delta > 0)
 		{
@@ -149,7 +154,11 @@ void	PolynomialEquation::showRealSolutionValues(void) const
 			std::cout << -b << " / " << 2 * a << std::endl;
 	}
 	if (_degree == 1)
-		std::cout << -_reducedPolynomial[0] << " / " << _reducedPolynomial[1] << std::endl;
+	{
+		double a = _reducedPolynomial[1];
+		double b = _reducedPolynomial.count(0) ? _reducedPolynomial[0] : 0;
+		std::cout << -b << " / " << a << std::endl;
+	}
 	if (_degree == 0)
 	{
 		if (_reducedPolynomial[0] == 0)

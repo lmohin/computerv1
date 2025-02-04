@@ -10,8 +10,8 @@ class PolynomialEquation
 	public :
 		PolynomialEquation(void);
 		PolynomialEquation(PolynomialEquation const &cpy);
-		PolynomialEquation(std::vector<double> const &reducedPolynomialEquation);
-		PolynomialEquation(std::vector<double> const &leftPolynomial, std::vector<double> const &rightPolynomial);
+		PolynomialEquation(std::map<long int, double> const &reducedPolynomialEquation);
+		PolynomialEquation(std::map<long int, double> const &leftPolynomial, std::map<long int, double> const &rightPolynomial);
 
 		~PolynomialEquation();
 
@@ -22,9 +22,9 @@ class PolynomialEquation
 		int const		&getDegree(void) const;
 		bool const		&getHasInfiniteSolutions(void) const;
 		std::vector<double> const	&getSolutions(void) const;
-		std::vector<double> const	&getLeftPolynomial(void) const;
-		std::vector<double> const	&getRightPolynomial(void) const;
-		std::vector<double> const	&getReducedPolynomial(void) const;
+		std::map<long int, double> const	&getLeftPolynomial(void) const;
+		std::map<long int, double> const	&getRightPolynomial(void) const;
+		std::map<long int, double> const	&getReducedPolynomial(void) const;
 
 		void	reduceEquation(void);
 		
@@ -38,9 +38,9 @@ class PolynomialEquation
 		bool			_hasInfiniteSolutions;
 		std::vector<double>	_solutions;	
 	
-		std::vector<double>	_leftPolynomial;
-		std::vector<double>	_rightPolynomial;
-		std::vector<double>	_reducedPolynomial;
+		std::map<long int, double>	_leftPolynomial;
+		std::map<long int, double>	_rightPolynomial;
+		std::map<long int, double>	_reducedPolynomial;
 };
 
 //std::ostream	&operator<<(std::ostream &o, Fixed const &obj);
