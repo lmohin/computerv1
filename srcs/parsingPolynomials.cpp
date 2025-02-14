@@ -7,12 +7,12 @@
 
 static void	printInvalidFormat(void)
 {
-	std::cout << "Error: Invalid format.\nExample: \"5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0\"" << std::endl;
+	std::cerr << "Error: Invalid format.\nExample: \"5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0\"" << std::endl;
 }
 
 static void	printOverflowError(void)
 {
-	std::cout << "Error: Overflow detected.\nTry again with smaller numbers!" << std::endl;
+	std::cerr << "Error: Overflow detected.\nTry again with smaller numbers!" << std::endl;
 }
 
 static bool	parseCoef(std::string const &line, size_t &i)

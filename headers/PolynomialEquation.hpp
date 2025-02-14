@@ -4,6 +4,7 @@
 # include <string>
 # include <iostream>
 # include <vector>
+# include <map>
 
 class PolynomialEquation
 {
@@ -22,6 +23,7 @@ class PolynomialEquation
 		int const		&getDegree(void) const;
 		bool const		&getHasInfiniteSolutions(void) const;
 		std::vector<double> const	&getSolutions(void) const;
+		std::vector<std::pair<double, double> > const	&getComplexSolutions(void) const;
 		std::map<long int, double> const	&getLeftPolynomial(void) const;
 		std::map<long int, double> const	&getRightPolynomial(void) const;
 		std::map<long int, double> const	&getReducedPolynomial(void) const;
@@ -37,7 +39,8 @@ class PolynomialEquation
 		int			_degree;
 		bool			_hasInfiniteSolutions;
 		std::vector<double>	_solutions;	
-	
+		std::vector<std::pair<double, double> > _complexSolutions;
+
 		std::map<long int, double>	_leftPolynomial;
 		std::map<long int, double>	_rightPolynomial;
 		std::map<long int, double>	_reducedPolynomial;

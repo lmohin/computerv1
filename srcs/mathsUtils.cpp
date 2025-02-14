@@ -1,8 +1,5 @@
 #include <iostream>
-#include <iomanip>
-#include <vector>
-#include "PolynomialEquation.hpp"
-#include <cmath>
+
 void	printDigit(int const &digit)
 {
 	switch (digit)
@@ -59,7 +56,6 @@ double	ft_abs(double const &value)
 		return (value);
 }
 
-
 // approximating square root function using Newton method
 double	ft_sqrt(double const &number)
 {
@@ -68,9 +64,9 @@ double	ft_sqrt(double const &number)
 	if (number == 0)
 		return 0;
     	
-	double value = number / 2.0;
+	double value = 0;
 	double epsilon = 1e-10;
-	double nextValue = 0.5 * (value + number / nextValue);
+	double nextValue = number / 2.0;
 	
 	while (ft_abs(nextValue - value) > epsilon)
 	{
@@ -80,43 +76,3 @@ double	ft_sqrt(double const &number)
 	return nextValue;
 }
 
-void	printVect(std::vector<double> const &value)
-{
-	int i = 0;
-	for (std::vector<double>::const_iterator it = value.begin(); it != value.end(); it++)
-	{
-		if (*it >= 0 && i != 0)
-			std::cout << "+ ";
-		else if (*it < 0)
-			std::cout << "- ";
-		std::cout << ft_abs(*it) << " * X";
-		printExponent(i);
-		std::cout << " ";
-		i++;
-	}
-	std::cout << "= 0" << std::endl;
-}
-/*
-void	printPartialVect(std::vector<double> const &value)
-{
-}
-*/
-
-//a + bx + cx**2
-
-int main(void)
-{
-	std::vector<double> prout;
-	prout.push_back(-12);
-	prout.push_back(29);
-	prout.push_back(2);
-	std::vector<double> caca;
-	caca.push_back(32);
-	PolynomialEquation here(prout, caca);
-	printVect(here.getReducedPolynomial());
-	here.solveInR();
-	std::cout << here.getSolutions()[0] << std::endl << here.getSolutions()[1] << std::endl;
-	here.showRealSolutionValues();
-//	std::cout << sqrt(45) << std::endl;
-//	std::cout << ft_sqrt(2) << std::endl;
-}
