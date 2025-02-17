@@ -5,6 +5,7 @@
 # include <iostream>
 # include <vector>
 # include <map>
+# include "mathsUtils.hpp"
 
 class PolynomialEquation
 {
@@ -28,10 +29,13 @@ class PolynomialEquation
 		std::map<long int, double> const	&getRightPolynomial(void) const;
 		std::map<long int, double> const	&getReducedPolynomial(void) const;
 
+		double	evaluateDelta(void);
+
 		void	reduceEquation(void);
 		
 		void	showRealSolutionValues(void) const;
-		
+		void	showComplexSolutionValues(void) const;
+
 		PolynomialEquation const	&operator=(PolynomialEquation const &cpy);	
 	
 	private :
@@ -46,6 +50,6 @@ class PolynomialEquation
 		std::map<long int, double>	_reducedPolynomial;
 };
 
-//std::ostream	&operator<<(std::ostream &o, Fixed const &obj);
+std::ostream	&operator<<(std::ostream &o, PolynomialEquation const &toPrint);
 
 #endif

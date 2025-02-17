@@ -1,4 +1,4 @@
-SRCS		= main.cpp mathsUtils.cpp parsingPolynomials.cpp PolynomialEquation.cpp test.cpp
+SRCS		= main.cpp mathsUtils.cpp parsingPolynomials.cpp PolynomialEquation.cpp
 
 DIR_SRC		= srcs/
 
@@ -8,7 +8,7 @@ CXX		= c++
 
 RM		= rm -f
 
-NAME		= Solver
+NAME		= computer
 
 FLAGS		= -Wall -Werror -Wextra
 

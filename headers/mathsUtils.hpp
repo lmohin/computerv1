@@ -1,5 +1,5 @@
 #ifndef MATHSUTILS_HPP
-# define MATHUTILS_HPP
+# define MATHSUTILS_HPP
 
 void	printDigit(int const &digit);
 
